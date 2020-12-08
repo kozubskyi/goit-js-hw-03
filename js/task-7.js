@@ -13,7 +13,13 @@ const account = {
    * Метод создает и возвращает объект транзакции.
    * Принимает сумму и тип транзакции.
    */
-  createTransaction(amount, type) {},
+  createTransaction(amount, type) {
+    if (type === DEPOSIT) {
+      this.deposit(amount);
+    } else if (type === WITHDRAW) {
+      this.withdraw(amount);
+    }
+  },
 
   /*
    * Метод отвечающий за добавление суммы к балансу.
@@ -21,7 +27,9 @@ const account = {
    * Вызывает createTransaction для создания объекта транзакции
    * после чего добавляет его в историю транзакций
    */
-  deposit(amount) {},
+  deposit(amount) {
+    this.balance += amount;
+  },
 
   /*
    * Метод отвечающий за снятие суммы с баланса.
@@ -32,7 +40,9 @@ const account = {
    * Если amount больше чем текущий баланс, выводи сообщение
    * о том, что снятие такой суммы не возможно, недостаточно средств.
    */
-  withdraw(amount) {},
+  withdraw(amount) {
+    this.balance -= amount;
+  },
 
   /*
    * Метод возвращает текущий баланс
