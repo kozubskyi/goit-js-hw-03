@@ -5,20 +5,23 @@ const Transaction = {
   WITHDRAW: 'withdraw',
 };
 
+/*
+* Каждая транзакция это объект со свойствами: id, type и amount
+*/
 const account = {
+  // Текущий баланс счета
   balance: 0,
-  transactions: [],
+
+  // История транзакций
+  transactions: [{id: 1, type: 'deposit', amount: 1000}, {id: 2, type: 'withdraw', amount: 400},],
 
   /*
    * Метод создает и возвращает объект транзакции.
    * Принимает сумму и тип транзакции.
    */
   createTransaction(amount, type) {
-    if (type === DEPOSIT) {
-      this.deposit(amount);
-    } else if (type === WITHDRAW) {
-      this.withdraw(amount);
-    }
+    const transaction = { amount, type };
+    return transaction;
   },
 
   /*
@@ -29,6 +32,7 @@ const account = {
    */
   deposit(amount) {
     this.balance += amount;
+
   },
 
   /*
@@ -47,12 +51,20 @@ const account = {
   /*
    * Метод возвращает текущий баланс
    */
-  getBalance() {},
+  getBalance() {
+    return this.balance;
+  },
 
   /*
    * Метод ищет и возвращает объект транзации по id
    */
-  getTransactionDetails(id) {},
+  getTransactionDetails(id) {
+    for (const transaction of this.transactions) {
+      if (id === transaction.id) {
+        return transaction;
+      }
+    }
+  },
 
   /*
    * Метод возвращает количество средств
@@ -60,3 +72,6 @@ const account = {
    */
   getTransactionTotal(type) {},
 };
+
+console.log(account.getTransactionDetails(1));
+console.log(account.getTransactionDetails(2));

@@ -14,8 +14,11 @@ const calculateTotalPrice = function (allProdcuts, productName) {
       return totalPrice;
     }
   }
+  return 'Такого товара нет';
 };
 
 console.log(calculateTotalPrice(products, 'Радар')); // 5200
 
 console.log(calculateTotalPrice(products, 'Дроид')); // 2800
+
+console.log(calculateTotalPrice(products, 'Телефон')); // Такого товара нет
