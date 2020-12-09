@@ -107,18 +107,15 @@ const account = {
 };
 
 console.log(account.getBalance()); // Текущий баланс: 0
+console.log(account.transactions); // []
 
 account.deposit(1000);
-
 account.deposit(2000);
-
 account.withdraw(500);
-
-console.log(account.getBalance()); // Текущий баланс: 2500
-
 account.withdraw(5000); // Снятие такой суммы невозможно, недостаточно средств
 
 console.log(account.getBalance()); // Текущий баланс: 2500
+console.log(account.transactions); // (3) [{…}, {…}, {…}]
 
 console.log(account.getTransactionDetails(1)); // Детали транзакции с id 1: {id: 1, type: "deposit", amount: 1000}
 console.log(account.getTransactionDetails(2)); // Детали транзакции с id 2: {id: 2, type: "deposit", amount: 2000}
